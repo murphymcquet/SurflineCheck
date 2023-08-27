@@ -12,4 +12,6 @@ struct Spot: Identifiable, Codable {
     let id: UUID
     let name: String
     //let location: CLLocation
+    
+    static var dummySpots = ["Ocean Beach", "Pacifica", "Fort Point", "Linda Mar", "Montara", "Rockaway", "Bolinas"]
 }

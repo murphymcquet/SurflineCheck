@@ -12,13 +12,24 @@ struct Report: Identifiable, Codable, FirestoreDb {
     static var CollectionName: String { get { return "Reports" } }
     static var EmptyInstance: Any { get { return Report(spot: "", description: "") }}
     
+    static var Ratings: [String] = [
+        "Very Poor",
+        "Poor",
+        "Poor to Fair",
+        "Fair",
+        "Fair to Good",
+        "Good",
+        "Good to Epic",
+        "Epic"
+    ]
+    
     enum Boards: Codable {
         case shortboard, groveler, gun, stepUp, midlength, longboard
     }
     
     struct ReportInfo: Codable {
         let worth: Bool
-        let rating: Int
+        let rating: String
         let ratingOutOf: Int
         let recommendedBoards: [Boards]
         let recomendedSkill: [User.SkillLevel]
