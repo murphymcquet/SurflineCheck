@@ -13,7 +13,7 @@ struct CreateReportView: View {
     @Binding var isPresentingNewScrumView: Bool
     @State var spot: String = ""
     @State var description: String = ""
-    @State var rating: String = ""
+    @State var rating: String = Report.Ratings[0]
     
     @State private var searchText = ""
     var searchResults: [String] {
@@ -26,15 +26,13 @@ struct CreateReportView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(searchResults, id: \.self) { spot in
-                    NavigationLink {
-                        CreateReportForm(spot: $spot, description: $description, rating: $rating, isPresentingNewScrumView: $isPresentingNewScrumView)
-                        Text(spot)
-                    } label: { Text(spot) }
-                    .onTapGesture {
-                        self.spot = spot
-                    }
+            List (searchResults, id: \.self) { spot in
+                NavigationLink {
+                    CreateReportForm(spot: spot, description: $description, rating: $rating, isPresentingNewScrumView: $isPresentingNewScrumView)
+                    Text(spot)
+                } label: { Text(spot) }
+                .onTapGesture {
+                    self.spot = spot
                 }
             }
             .navigationTitle("Pick location")
@@ -44,19 +42,23 @@ struct CreateReportView: View {
 }
 
 struct CreateReportForm: View {
-    @Binding var spot: String
+    var spot: String
     @Binding var description: String
     @Binding var rating: String
     @Binding var isPresentingNewScrumView: Bool
     
-    @State var boards: [Report.Boards] = []
+    @State var boards: Set<String> = Set<String>()
+    @State var skills: Set<String> = Set<String>()
     @State var isPrivate: Bool = false
-    @State var isWorth: String = ""
+    @State var isWorth: String = isWorthAnswers[0]
+    
+    static var isWorthAnswers = ["Yes", "No"]
     
     var body: some View {
         let reportCollection = Firestore.firestore().collection(Report.CollectionName)
+        
         Form {
-            Section {
+            Section (header: Text("Review")) {
                 Picker("Rating", selection: $rating) {
                     ForEach(Report.Ratings, id: \.self) { rating in
                         Text(rating)
@@ -64,22 +66,37 @@ struct CreateReportForm: View {
                 }
                 TextField("Description", text: $description,  axis: .vertical)
                     .lineLimit(5...10)
-            }
-            Section {
                 // TODO: board selection, skill selection
                 Picker("Worth surfing?", selection: $isWorth) {
-                    ForEach(["Yes", "No"], id: \.self) { option in
+                    ForEach(CreateReportForm.isWorthAnswers, id: \.self) { option in
                         Text(option)
                     }
                 }
-                Toggle("Make private?", isOn: $isPrivate)
             }
+            
+            Section (header: Text("Recommended Boards")){
+                MultiSelectView(
+                    objects: Report.Boards.allCases.map({
+                        (value: Report.Boards) -> String in
+                        return value.rawValue
+                  }), selected: $boards)
+            }
+            
+            Section (header: Text("Recommended Level")){
+                MultiSelectView(
+                    objects: User.SkillLevel.allCases.map({
+                        (value: User.SkillLevel) -> String in
+                        return value.rawValue
+                  }), selected: $skills)
+            }
+            
+            Toggle("Make report private?", isOn: $isPrivate)
         }
         .navigationTitle("Report: \(spot)")
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Create report") {
-                    let report = Report(spot: self.spot, description: self.description)
+                    let report = Report.sampleData[0]
                     do { try reportCollection.addDocument(from: report) }
                     catch { }
                     isPresentingNewScrumView = false

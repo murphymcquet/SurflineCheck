@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151FFDF02AA0511B0048F575 /* MultiSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FFDEF2AA0511B0048F575 /* MultiSelect.swift */; };
 		155CA2E42A96A81B00539294 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 155CA2E32A96A81B00539294 /* FirebaseFirestore */; };
 		156E833D2A96AA3A008FB534 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 156E833C2A96AA3A008FB534 /* FirebaseFirestoreSwift */; };
 		156E833F2A96B17E008FB534 /* FirestoreDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E833E2A96B17E008FB534 /* FirestoreDb.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151FFDEF2AA0511B0048F575 /* MultiSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelect.swift; sourceTree = "<group>"; };
 		156E833E2A96B17E008FB534 /* FirestoreDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDb.swift; sourceTree = "<group>"; };
 		15C49BEF2A9302EB00B63E92 /* CreateReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReportView.swift; sourceTree = "<group>"; };
 		15C49BF32A94F3C300B63E92 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				15FC28B42A8ED3760015CC90 /* FriendsView.swift */,
 				15FC28B62A8ED3870015CC90 /* SpotsView.swift */,
 				15C49BEF2A9302EB00B63E92 /* CreateReportView.swift */,
+				151FFDEF2AA0511B0048F575 /* MultiSelect.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				15FC28AB2A8D2E670015CC90 /* Theme.swift in Sources */,
 				15C49BF62A94FA5A00B63E92 /* Report.swift in Sources */,
 				15FC28B72A8ED3870015CC90 /* SpotsView.swift in Sources */,
+				151FFDF02AA0511B0048F575 /* MultiSelect.swift in Sources */,
 				15FC28A92A8D2D6C0015CC90 /* Home.swift in Sources */,
 				15FC28B52A8ED3760015CC90 /* FriendsView.swift in Sources */,
 				156E833F2A96B17E008FB534 /* FirestoreDb.swift in Sources */,

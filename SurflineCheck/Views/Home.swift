@@ -18,23 +18,15 @@ struct Home: View {
     var body: some View {
         NavigationStack{
             VStack() {
-                let reportsDest = ReportsView(numberOfReports: $numberOfReports)
-                    .onAppear() {
-                        let _ = print("I'm trying")
-                        Task {
-                            numberOfReports = await GetNumberOfReports()
+                ScrollView {
+                    // TODO: get reports data
+                    ForEach(Report.sampleData) { report in
+                        NavigationLink(destination: Text("yo")) {
+                            CardView(report: report)
                         }
                     }
-                NavigationLink(destination: reportsDest) {
-                    CardView(title: "Reports", icon: Image(systemName: "star.bubble"))
+                    Spacer()
                 }
-                NavigationLink(destination: SpotsView()) {
-                    CardView(title: "Spots", icon: Image(systemName: "figure.surfing"))
-                }
-                NavigationLink(destination: FriendsView()) {
-                    CardView(title: "Friends", icon: Image(systemName: "person.fill"))
-                }
-                Spacer()
             }
             .padding()
             .navigationTitle("Surfline Check")
@@ -49,17 +41,6 @@ struct Home: View {
             CreateReportView(isPresentingNewScrumView: $isPresentingNewScrumView)
         }
     }
-}
-
-private func GetNumberOfReports() async -> Int {
-    let _ = print("Trying to get reports.")
-    let db = Firestore.firestore()
-    let reportsCollection = db.collection(Report.CollectionName)
-    var reports = 0
-    do { reports = try await reportsCollection.getDocuments().count}
-    catch { }
-    let _ = print("Found reports! We found \(reports).")
-    return reports
 }
 
 struct Home_Preview: PreviewProvider {

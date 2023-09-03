@@ -9,8 +9,9 @@ import Foundation
 
 struct User: Identifiable, Codable {
     
-    enum SkillLevel: Codable {
+    enum SkillLevel: String, Codable, CaseIterable, Identifiable {
         case Beginner, Intermediate, Advanced, Pro
+        var id: String { return self.rawValue }
     }
     
     let id: UUID
