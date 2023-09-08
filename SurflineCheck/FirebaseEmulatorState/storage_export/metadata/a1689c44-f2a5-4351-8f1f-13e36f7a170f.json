@@ -1,0 +1,19 @@
+{
+  "name": "images/OB.jpeg",
+  "bucket": "surflinecheck-783eb.appspot.com",
+  "metageneration": 1,
+  "generation": 1694111343332,
+  "contentType": "image/jpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2957ff01-8cbf-4072-9963-b59df7d67486"
+  ],
+  "etag": "sEPgZJ/iwrNybEpkSlxH2/s2Zjs",
+  "customMetadata": {},
+  "timeCreated": "2023-09-07T18:29:03.333Z",
+  "updated": "2023-09-07T18:29:03.333Z",
+  "size": 59159,
+  "md5Hash": "8qlhQ9ItMhprmOlwzCt5XQ==",
+  "crc32c": "2501712916"
+}

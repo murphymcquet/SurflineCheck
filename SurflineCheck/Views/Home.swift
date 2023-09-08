@@ -18,6 +18,7 @@ struct Home: View {
     var body: some View {
         NavigationStack{
             VStack() {
+                
                 ScrollView {
                     // TODO: get reports data
                     ForEach(Report.sampleData) { report in
@@ -27,6 +28,7 @@ struct Home: View {
                     }
                     Spacer()
                 }
+                
             }
             .padding()
             .navigationTitle("Surfline Check")
